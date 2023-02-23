@@ -7,10 +7,10 @@ echo "test working" >> log.txt
 
 git fetch > fetchResult.txt
 
-Upstream = ${1:-'@{u}'}
-Local = $(git rev-parse @)
-Remote = $(git rev-parse "$Upstream")
-Base = $(git merge-base @ "$Upstream")
+#Upstream = ${1:-'@{u}'}
+#Local = $(git rev-parse @)
+#Remote = $(git rev-parse "$Upstream")
+#Base = $(git merge-base @ "$Upstream")
 
-if [$Local = $Remote]; then
-	echo "Repository Up-to-Date"
+#if [$Local = $Remote]; then
+	#echo "Repository Up-to-Date"
