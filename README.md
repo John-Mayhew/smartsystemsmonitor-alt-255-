@@ -10,4 +10,9 @@ Test.
 ## Other
 
 ## Contributors
+---
+
+### :woman_technologist: About CJ Wilson :
+
+I am 
 
