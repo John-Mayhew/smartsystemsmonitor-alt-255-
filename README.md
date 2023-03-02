@@ -35,6 +35,6 @@ This is a monitoring system designed to record temperature and gas readings at S
 
 ### :woman_technologist: About Cameron Browne :
 
-- I am xxx
+- I am studying Computer Forensics and Security. 
 
 ---
