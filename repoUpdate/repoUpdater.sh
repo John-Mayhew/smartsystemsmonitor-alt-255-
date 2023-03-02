@@ -1,16 +1,20 @@
 #! /usr/bin/env bash
 #! /bin/sh
 
-cd /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/
+# Author: Group Alt 255 | <jm1460@canterbury.ac.uk><cb1258@canterbury.ac.uk><CJ><or56@canterbury.ac.uk>
+# Version 1.0
 
-echo "test working" >> log.txt
+# Description:
+# This script was created to work in relation with Chrontab to automatically update from a remote Github repository every hour if changes are found.
 
-git fetch > fetchResult.txt
+source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh
 
-#Upstream = ${1:-'@{u}'}
-#Local = $(git rev-parse @)
-#Remote = $(git rev-parse "$Upstream")
-#Base = $(git merge-base @ "$Upstream")
+cd /home/pi/github/smartsystemsmonitor-alt-255
 
-#if [$Local = $Remote]; then
-	#echo "Repository Up-to-Date"
+repository=$(pwd)
+
+
+LOGGING "- Current Directory is: ${repository}"
+#LOGGING "- Repository Update Script was run"
+
+#if 
