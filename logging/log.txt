@@ -100,3 +100,67 @@
 
 [20230307103444] - fetchResult.txt was empty - Running Fetch now.
 
+[20230309113002] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309113002] - Repository is up to Date
+
+[20230309113015] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309113015] - Repository is up to Date
+
+[20230309113509] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309114543] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309114655] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309114906] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309115355] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309115522] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309115534] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309115631] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309115719] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309120522] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309120522] - Repository up to date
+
+[20230309121059] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309121059] - Repository up to date
+
+[20230309121108] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309121108] - Repository up to date
+
+[20230309121155] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309121214] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309121214] - Repository up to date
+
+[20230309121432] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309121432] - Repository up to date
+
+[20230309124817] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309124859] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309125213] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309125904] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309125928] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309125928] - Repository up to date
+
+[20230309130444] - Current Directory is: /home/pi/github/smartsystemsmonitor-alt-255
+
+[20230309130444] - Repository up to date
+
