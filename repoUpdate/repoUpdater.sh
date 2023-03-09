@@ -21,6 +21,7 @@
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------- Declaring Variables
 
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
 
@@ -31,20 +32,20 @@ repository=$(pwd) # Prints the working directory and parses this value into $Rep
 LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
 
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
-#--------------------------------------- File Exists?
+# --------------------------------------- File Exists?
 
 if [ -f /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt ]; then # Checks if the fetchResult.txt file exists
 
-#--------------------------------------- fetchResult.txt is empty?
+# --------------------------------------- fetchResult.txt is empty?
 
         if [ ! -s /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt ]; then # Checks if the file fetchResult.txt is empty, # If True run the loop
 
                 #Fetch result is empty
                 LOGGING "- fetchResult.txt was empty - Running Fetch now." # Prints the current actions to the log.txt file.
-                script -f -q /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt -c 'git fetch' &&
+                script -f -q /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt -c 'git fetch'
 
 
-#--------------------------------------- Updated Repository?
+# --------------------------------------- Updated Repository?
 
         else
 
@@ -52,7 +53,7 @@ if [ -f /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt ]
 
         fi
 
-#--------------------------------------- fetchResult.txt does not exist error logging
+# --------------------------------------- fetchResult.txt does not exist.
 
 else
         LOGGING "fetchResult.txt does not exist." # Error that is logged if fetchResult.txt does not exist
