@@ -36,7 +36,7 @@ LOGGING "- Current Directory is: ${repository}" # Prints the current working dir
 if [[ ! ${status} ]]; then
 
 	LOGGING "- Repository requires an update, updating now"
-	gitPull=$(git pull --dry-run 2>&1)
+	gitPull=$(git pull 2>&1)
 	LOGGING "${gitPull}"
 
 else
