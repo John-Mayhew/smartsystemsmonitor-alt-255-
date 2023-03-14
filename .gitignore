@@ -1,2 +1,2 @@
 # Exlcludes Log.txt from Github's scope
-/home/pi/github/smartsystemsmonitor-alt-255/logging/log.txt
+logging/log.txt
