@@ -26,9 +26,16 @@ source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls 
 # -------------Date command into variable for image name
 
 DATEFORMATV=$(date +"%Y%m%d%H%M%S")
-echo -e "The date is  ${DATEFORMATV}\n"     #To test that the variable is working, will need to remove this line.
 
-# -------------Set camera settings
+#echo -e "The date is  ${DATEFORMATV}\n"     #To test that the variable is working, will need to remove this line.
 
-RaspiStill -o ${DATEFORMATV}
-LOGGING " - Image taken, Saved to the Camera Directory" # Prints the current actions to the log.txt file. Camera directory: home/pi/github/smartsystemsmonitor-alt-255/camera
+# -------------Camera
+
+cd home/pi/github/smartsystemsmonitor-alt-255/camera/pictures #Move to picture directory
+libcamera-jpeg -n -o ${DATEFORMATV} 
+cd home/pi/github/smartsystemsmonitor-alt-255 #Move back to github repository
+
+#Could use libcamera-still --datetime but outputs as MMDDhhmmss.jpg (not iso 8601 standard)
+
+LOGGING " - Image taken, Saved to the Camera Directory" # Prints the current actions to the log.txt file. Camera directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
+
