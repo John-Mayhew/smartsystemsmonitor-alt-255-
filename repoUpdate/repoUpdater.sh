@@ -36,7 +36,7 @@ if [[ ! ${status} ]]; then
 
 	LOGGING "- Repository requires an update, updating now"
 	gitPull=$(git pull 2>&1)
-	LOGGING "${gitPull}"
+	LOGGING "${gitPull} | grep -w main"
 
 else
 
