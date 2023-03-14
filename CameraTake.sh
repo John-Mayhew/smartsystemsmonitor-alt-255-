@@ -31,9 +31,13 @@ DATEFORMATV=$(date +"%Y%m%d%H%M%S")
 
 # -------------Camera
 
-cd home/pi/github/smartsystemsmonitor-alt-255/camera/pictures #Move to picture directory
-libcamera-jpeg -n -o ${DATEFORMATV} 
-cd home/pi/github/smartsystemsmonitor-alt-255 #Move back to github repository
+cd /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures #Move to picture directory
+
+RaspiStill -o ${DATEFORMATV} 
+
+#libcamera-jpeg -n -o ${DATEFORMATV} (didnt work try RaspiStill) 
+
+cd /home/pi/github/smartsystemsmonitor-alt-255 #Move back to github repository
 
 #Could use libcamera-still --datetime but outputs as MMDDhhmmss.jpg (not iso 8601 standard)
 
