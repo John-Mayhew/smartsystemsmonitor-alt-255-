@@ -8,7 +8,7 @@
 #
 # John Mayhew           |       <jm1460@canterbury.ac.uk>
 # Cameron Browne        |       <cb1258@canterbury.ac.uk>
-# Cj Wilson             |       <c.wilson831@canterbury.ac.uk>
+# Cj Wilson             |       <cw831@canterbury.ac.uk>
 # Oliver Rushgadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
@@ -36,7 +36,7 @@ if [[ ! ${status} ]]; then
 
 	LOGGING "- Repository requires an update, updating now"
 	gitPull=$(git pull 2>&1)
-	LOGGING "${gitPull}"
+	LOGGING "${gitPull} | grep -w main"
 
 else
 
