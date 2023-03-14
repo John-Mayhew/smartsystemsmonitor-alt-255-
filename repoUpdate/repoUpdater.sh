@@ -21,6 +21,7 @@
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------- Declaring Variables
 
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
 
@@ -28,8 +29,6 @@ cd /home/pi/github/smartsystemsmonitor-alt-255 # Sets the directory that the scr
 
 repository=$(pwd) # Prints the working directory and parses this value into $Repository.
 status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]")
-
-
 
 LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
 
@@ -42,4 +41,5 @@ if [[ ! ${status} ]]; then
 else
 
 	LOGGING "- Repository up to date"
+  
 fi
