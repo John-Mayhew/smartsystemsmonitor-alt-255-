@@ -5,6 +5,8 @@
 This is a monitoring system designed to record temperature and gas readings at 15 minute intervals alongside taking a photo and upload them to the CCCU cloud storage network. 
 Both power consumtion and processing speed has been considered when deisgning this system so that it runs smoothly without the consumtion of too much resources.
 
+Within this systems is a logging function that allows for a record of when actions have been run and what they are for. This includes 
+
 ## Prerequisites:
 Python is used in the gas monitoring script.
 Designed to work on Rasberry Pi lite.
