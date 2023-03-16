@@ -1,5 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
 #
 # Author: Group alt 255
 #
