@@ -1,2 +1,3 @@
 # Exlcludes Log.txt from Github's scope
 logging/log.txt
+camera/pictures/
