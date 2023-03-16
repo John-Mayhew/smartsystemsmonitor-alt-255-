@@ -1,5 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
 #
 # Author: Group alt 255
 #
@@ -34,9 +33,9 @@ DATEFORMATV=$(date +"%Y%m%d%H%M%S")
 
 cd /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures #Move to picture directory
 
-RaspiStill -o ${DATEFORMATV} 
+#RaspiStill -o ${DATEFORMATV} did not work trying libcamera again
 
-#libcamera-jpeg -n -o ${DATEFORMATV} (didnt work try RaspiStill) 
+libcamera-jpeg -n -o ${DATEFORMATV}
 
 cd /home/pi/github/smartsystemsmonitor-alt-255 #Move back to github repository
 
