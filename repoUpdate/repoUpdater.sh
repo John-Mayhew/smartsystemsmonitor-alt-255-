@@ -8,7 +8,7 @@
 #
 # John Mayhew           |       <jm1460@canterbury.ac.uk>
 # Cameron Browne        |       <cb1258@canterbury.ac.uk>
-# Cj Wilson             |       <c.wilson831@canterbury.ac.uk>
+# Cj Wilson             |       <cw831@canterbury.ac.uk>
 # Oliver Rushgadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
@@ -21,39 +21,25 @@
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------- Declaring Variables
 
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
 
 cd /home/pi/github/smartsystemsmonitor-alt-255 # Sets the directory that the script will run from, allows for access to git commands becuase they need visability of the .git files
 
 repository=$(pwd) # Prints the working directory and parses this value into $Repository.
+status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]")
 
 LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
 
-# -----------------------------------------------------------------------------------------------------------------------------------------------------------
-#--------------------------------------- File Exists?
+if [[ ! ${status} ]]; then
 
-if [ -f /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt ]; then # Checks if the fetchResult.txt file exists
-
-#--------------------------------------- fetchResult.txt is empty?
-
-        if [ ! -s /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt ]; then # Checks if the file fetchResult.txt is empty, # If True run the loop
-
-                #Fetch result is empty
-                LOGGING "- fetchResult.txt was empty - Running Fetch now." # Prints the current actions to the log.txt file.
-                script -f -q /home/pi/github/smartsystemsmonitor-alt-255/repoUpdate/fetchResult.txt -c 'git fetch' &&
-
-
-#--------------------------------------- Updated Repository?
-
-        else
-
-                LOGGING "- Repository is up to Date" # Logging for the repository being up to date with the remote repository
-
-        fi
-
-#--------------------------------------- fetchResult.txt does not exist error logging
+	LOGGING "- Repository requires an update, updating now"
+	gitPull=$(git pull 2>&1)
+	LOGGING "${gitPull} | grep -w main"
 
 else
-        LOGGING "fetchResult.txt does not exist." # Error that is logged if fetchResult.txt does not exist
+
+	LOGGING "- Repository up to date"
+  
 fi
