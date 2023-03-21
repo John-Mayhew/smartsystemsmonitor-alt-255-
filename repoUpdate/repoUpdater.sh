@@ -61,4 +61,9 @@ elif [ ${status} ]; then
 
 	LOGGING "- Repository up to date" # Logging that the repository has not changed and therefore does not require an update. 
 	LOGGING "- ${status}"
+
+else
+
+	echo -e "Else was met - ${status}"
+
 fi
