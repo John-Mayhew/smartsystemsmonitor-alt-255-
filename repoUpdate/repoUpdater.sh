@@ -37,6 +37,14 @@ if [[ ! ${status} ]]; then
 	LOGGING "- Repository requires an update, updating now"
 	gitPull=$(git pull 2>&1)
 	LOGGING "${gitPull} | grep -w main"
+	echo $?
+	
+	while [ $? != 0 ] do
+		
+		git pull
+		LOGGING "git pull failed (exit code 1), running git pull again'
+		
+	done
 
 else
 
