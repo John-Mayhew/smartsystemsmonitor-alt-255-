@@ -24,7 +24,7 @@ Version 1.0
 
 :man_technologist: **About John Mayhew:**  
 [jm1460@Canterbury.ac.uk](jm1460@Canterbury.ac.uk)
-- I am a Cyber Forensics and Computer security undergradute, I have limited prior experience in bash welcome the challenge of learning new coding languages 
+- I am a Cyber Forensics and Computer security undergradute, I have limited prior experience in bash, however, welcome the challenge of learning new coding languages 
 
 ---
 
