@@ -31,12 +31,14 @@ status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines t
 
 LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
 
-if [[ -z ${status} ]]; then
+while [[ -z ${status} ]]; do
 
 	LOGGING "- Status is empty, Git fetch may have failed - Retrying now" # Logging for if the status variable is empty
 	status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
 
-elif [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
+done
+
+if [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
 
 	LOGGING "- Repository requires an update, updating now" # Logging to say that the local repository does not match the remote repository and therefore requires an update. 
 	gitPull=$(git pull -va 2>&1) # Parses the result of git pull to a variable so that this can be used later for logging.
@@ -64,6 +66,6 @@ elif [[ ${status} ]]; then
 
 else
 
-	echo -e "Else was met - ${status}"
+	LOGGING "Else was met - ${status}"
 
 fi
