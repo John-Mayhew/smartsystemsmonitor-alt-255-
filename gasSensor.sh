@@ -16,8 +16,28 @@
 # Date of Version Completion:
 #
 # Description:
-# This script is created in order to obtain data from the gas sensor on the Raspberry Pi where this data will eventually be sent to an IP Address.
+# This script is gets data from the MQ-5 gas sensor connected to the Raspberry Pi where this data will eventually be sent to external storage.
 #
-#
-# -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# --------------------------------------- Declaring Variables
+#----------------------------------------------------------------------------------------------------
+
+import time
+from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
+
+# connect sensor to analog port
+PIN = "0"
+sensor = GroveGasSensorMQ5(PIN)
+
+print('Detecting...')
+while True:
+    try:
+        gas_reading = sensor.read() #? .MQ5 .value
+        print(f'Gas value: {gas_reading}')
+        
+        # sleep before getting a new reading
+        time.sleep(0.3)
+
+    # if ctrl+c is pressed; stop
+    except KeyboardInterrupt
+        break
+
+# print(dir(sensor))
