@@ -17,15 +17,18 @@
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
  
 # -------------Image removal
- 
-if [[ $(find /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures -type f | wc -l)  -gt 48 ]]; then #Check the amount of files in the picture directory                 
-        #if it is greater than 48, it will do the following.
+IMAGECYCLE()  #making it a function
 {
+ if [[ $(find /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures -type f | wc -l)  -gt 48 ]]; then #Check the amount of files in the picture directory                 
+        #if it is greater than 48, it will do the following.
+ {
    ls -tf > ReverseFiles.txt    #list files in reverst time order and save them to the file
    OLDEST=$( tail -n 1 ReverseFiles.txt)        #sets the first value in the file as OLDEST
 
   # Prints the current actions to the log.txt file. Picture directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
    LOGGING "- Oldest image removing from the Picture directory: $OLDEST."
    rm $OLDEST   #deletes the oldest file
-   LOGGING "-Oldest image has been removed: $OLDEST."   #Prints the deletion to log.txt     
+   LOGGING "-Oldest image has been removed: $OLDEST."   #Prints the deletion to log.txt
+ }
+ fi
 }
