@@ -8,7 +8,7 @@
 # John Mayhew           |       <jm1460@canterbury.ac.uk>
 # Cameron Browne        |       <cb1258@canterbury.ac.uk>
 # Cj Wilson             |       <cw831@canterbury.ac.uk>
-# Oliver Rushgadsby     |       <or56@canterbury.ac.uk>
+# Oliver Rush-Gadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
 # Date Created: 01/03/2023
@@ -48,6 +48,7 @@ if [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-dat
 	gitPull=$(git pull -va 2>&1) # Parses the result of git pull to a variable so that this can be used later for logging.
 	LOGGING "$({gitPull} | grep -w main)" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
+	echo $?
 	
 	while [ $? != 0 && ${pullCount} -lt 10 ]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
 	do
@@ -60,6 +61,7 @@ if [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-dat
 		if [ $? == 0 ]; then # If exit code = 0 (successful) then the git pull has completed without failure.
 		
 			LOGGING "- Git Pull successful, Exit code 0, process sleeping until next scheduled event" # Logging that the git pull was successful. 
+			echo $?
 		
 		fi
 		
