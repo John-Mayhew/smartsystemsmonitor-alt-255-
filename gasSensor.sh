@@ -24,17 +24,21 @@ import os
 import time
 from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
 from datetime import datetime
+#from envbash import load_envbash
 
 # connect sensor to analog port
 PIN = "0"
 sensor = GroveGasSensorMQ5(PIN)
 
+# logging (?)
+#load_envbash('/home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh')
+#os.environ['LOGGING "- Creating new gas readings"']
+
 while True:
     try:
-        
         # get and print the reading 
         timestamp = datetime.utcnow().isoformat()
-        gas_reading = sensor.MQ5 #? .MQ5 .value
+        gas_reading = sensor.MQ5
         print(f'{timestamp}: Gas value: {gas_reading}')
         
         # sleep before getting a new reading
