@@ -19,7 +19,7 @@ source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls 
  if [[ $(find /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures -type f | wc -l)  -gt 48 ]]; then #Check the amount of files in the picture directory                 
         #if it is greater than 48, it will do the following.
  {
-   ls -tf /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures *.jpg > ReverseFiles.txt    #list files in reverst time order and save them to the file
+   ls -tf *.jpg /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures  > ReverseFiles.txt    #list files in reverst time order and save them to the file
    OLDEST=$( tail -n 1 ReverseFiles.txt)        #sets the first value in the file as OLDEST
 
   # Prints the current actions to the log.txt file. Picture directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
