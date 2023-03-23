@@ -16,25 +16,29 @@
 # Date of Version Completion:
 #
 # Description:
-# This script is gets data from the MQ-5 gas sensor connected to the Raspberry Pi where this data will eventually be sent to external storage.
+# This script gets data from the MQ-5 gas sensor connected to the Raspberry Pi where this data will eventually be sent to external storage.
 #
 #----------------------------------------------------------------------------------------------------
 
+import os
 import time
 from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
+from datetime import datetime
 
 # connect sensor to analog port
 PIN = "0"
 sensor = GroveGasSensorMQ5(PIN)
 
-print('Detecting...')
 while True:
     try:
-        gas_reading = sensor.read() #? .MQ5 .value
-        print(f'Gas value: {gas_reading}')
+        
+        # get and print the reading 
+        timestamp = datetime.utcnow().isoformat()
+        gas_reading = sensor.MQ5 #? .MQ5 .value
+        print(f'{timestamp}: Gas value: {gas_reading}')
         
         # sleep before getting a new reading
-        time.sleep(0.3)
+        time.sleep(1)
 
     # if ctrl+c is pressed; stop
     except KeyboardInterrupt
