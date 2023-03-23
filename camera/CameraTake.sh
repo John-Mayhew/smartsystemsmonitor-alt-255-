@@ -15,7 +15,7 @@
 #
 # Description:
 # This script is designed to take a picture when the script is run. It should save the image in the current directory, which should be 'camera', with the nameing convention 
-# for each image being the ISO standard 8601 for date and time.
+# for each image being the ISO standard 8601 for date and time. It calls the PictureLimit.sh to delete the oldest image after an image has been taken to conserve memory.
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
