@@ -33,11 +33,11 @@ pullCount=0 # Break conditon for the while loop performing the git pull incase o
 
 LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
 
-while [[ -z ${status} && ${fetchCount} -lt 20 ]]; do
+while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do
 
-	LOGGING "- Status is empty, Git fetch may have failed - Retrying now" # Logging for if the status variable is empty
+	#LOGGING "- Status is empty, Git fetch may have failed - Retrying now" # Logging for if the status variable is empty
 	status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
-	let fetchCount++ # Increases the variable by 1 so that the while loop will break after 20 tries if ${status} is not filled before.
+	let fetchCount++ # Increases the variable by 1 so that the while loop will break after 10 tries if ${status} is not filled before.
 	LOGGING "${fetchCount}" # Test condition ** REMOVE
 
 done
