@@ -55,6 +55,7 @@ if [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-dat
 		git pull # Pulls from the remote repository
 		LOGGING "- Git pull failed (exit code 1), running git pull again" # Logging the failure every time the loop is run - Should run until completed. 
 		${pullCount} + 1 # Increases the variable by 1 so that the while loop will break after 10 tries if not successful and the error code is still reporting as 1 (Failure)
+		echo "${pullCount}"
 		
 		if [ $? == 0 ]; then # If exit code = 0 (successful) then the git pull has completed without failure.
 		
