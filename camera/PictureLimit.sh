@@ -9,7 +9,7 @@
 #
 # Description:
 # This script is designed to check for the amount of images stored in the picture dirctory, and if there is 48 images, it will sort the images and delete the oldest one.   
-# This is to help with memory management on the system.
+# This is to help with memory management on the system. This is called in the CameraTake.sh to remove the oldest images after a new image has been taken.
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
