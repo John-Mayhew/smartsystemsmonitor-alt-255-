@@ -9,16 +9,13 @@
 #
 # Description:
 # This script is designed to check for the amount of images stored in the picture dirctory, and if there is 48 images, it will sort the images and delete the oldest one.   
-# This is to help with memory management on the system. This is called in the CameraTake.sh to remove the oldest images after a new image has been taken.
-#
+# This is to help with memory management on the system.
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # ------------ Logging
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
  
 # -------------Image removal
-IMAGECYCLE()  #making it a function
-{
  if [[ $(find /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures -type f | wc -l)  -gt 48 ]]; then #Check the amount of files in the picture directory                 
         #if it is greater than 48, it will do the following.
  {
@@ -31,4 +28,3 @@ IMAGECYCLE()  #making it a function
    LOGGING "-Oldest image has been removed: $OLDEST."   #Prints the deletion to log.txt
  }
  fi
-}
