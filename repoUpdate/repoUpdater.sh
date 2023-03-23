@@ -28,13 +28,17 @@ cd /home/pi/github/smartsystemsmonitor-alt-255 # Sets the directory that the scr
 
 repository=$(pwd) # Prints the working directory and parses this value into $Repository.
 status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
+fetchCount=0 # Break condition for while loop to prevent indefinite retries of git fetch
+pullCount=0 # Break conditon for the while loop performing the git pull incase of failure to prevent indefinite retries. 
 
 LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
 
-while [[ -z ${status} ]]; do
+while [[ -z ${status} && ${fetchCount} < 20 ]]; do
 
 	LOGGING "- Status is empty, Git fetch may have failed - Retrying now" # Logging for if the status variable is empty
 	status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
+	${fetchCount} + 1 # Increases the variable by 1 so that the while loop will break after 20 tries if ${status} is not filled before.
+	Echo "${fetchCount}" # Test condition ** REMOVE
 
 done
 
@@ -42,15 +46,16 @@ if [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-dat
 
 	LOGGING "- Repository requires an update, updating now" # Logging to say that the local repository does not match the remote repository and therefore requires an update. 
 	gitPull=$(git pull -va 2>&1) # Parses the result of git pull to a variable so that this can be used later for logging.
-	LOGGING "${gitPull} | grep -w main" # Logging the git pull so that we can monitor failures.
+	LOGGING "$({gitPull} | grep -w main)" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
 	
-	while [ $? != 0 ]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
+	while [ $? != 0 && pullCount < 10 ]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
 	do
 		
 		git pull # Pulls from the remote repository
 		LOGGING "- Git pull failed (exit code 1), running git pull again" # Logging the failure every time the loop is run - Should run until completed. 
-		z
+		${pullCount} + 1 # Increases the variable by 1 so that the while loop will break after 10 tries if not successful and the error code is still reporting as 1 (Failure)
+		
 		if [ $? == 0 ]; then # If exit code = 0 (successful) then the git pull has completed without failure.
 		
 			LOGGING "- Git Pull successful, Exit code 0, process sleeping until next scheduled event" # Logging that the git pull was successful. 
@@ -62,7 +67,7 @@ if [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-dat
 elif [[ ${status} ]]; then
 
 	LOGGING "- Repository up to date" # Logging that the repository has not changed and therefore does not require an update. 
-	LOGGING "- ${status}"
+	echo "- ${status}"
 
 else
 
