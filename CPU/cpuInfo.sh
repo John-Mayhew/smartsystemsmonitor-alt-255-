@@ -1,6 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
-#! /bin/bash -e
 #
 # Author: Group Alt 255
 #
@@ -23,22 +21,31 @@
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # --------------------------------------- Declaring Variables
 
-GOVDIR="/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
-AVAILGOVS=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors)
-CORES=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
+CPUDIR=/sys/devices/system/cpu/cpu0/cpufreq/
+NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
+COLUMNS=''
+HEADER="SCPU Policies\t| CORES 0:${NTHCORE}-->"
 
-while [[ 1 ]]; do
-        echo "Please select from the following governors:"
-        echo  "${AVAILGOVS}"
 
-        read GOV
-        # use grep to match input with sub string of AVAILGOVS
-        if grep -q "$GOV" <<< "${AVAILGOVS}"; then
-                break
-        fi
+for (( c=0; c<=${NTHCORE}; c++ ))
+do
+  COLUMNS="${COLUMNS} -"
 done
 
-echo -n "Changing the scaling_governor all ${CORES} to "
+echo -e ${HEADER}
 
-echo "${GOV}" | sudo tee ${GOVDIR}
-echo "Success your new Scaling Governor is ${GOV}"
+for i in ${CPUDIR}{cpuinfo,scaling}_*; do #iterate over the all cput frequencies
+  PNAME=$(basename $i)
+
+  [[ "${PNAME}" == *available* ]] || [[ "${PNAME}" == *transition* ]] || \
+  [[ "${PNAME}" == *driver* ]]    || [[ "${PNAME}" == *setspeed* ]] && continue
+
+  echo "${PNAME}: "
+
+  for (( j=0; j<${NTHCORE}; j++ ))
+  do
+  # replace cpu0 with cpuj for  /sys/devices/system/cpu/cpuj/cpufreq...
+    KPARAM=$(echo $i | sed "s/cpu0/cpu$j/") 
+    cat "${KPARAM}"
+  done
+done | paste ${COLUMNS} | column -t

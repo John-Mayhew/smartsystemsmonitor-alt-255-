@@ -1,5 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
 #
 # Author: Group alt 255
 #
@@ -11,8 +10,8 @@
 # Oliver Rushgadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
-# Date Created: 01/03/2023
-# Date of Version Completion:
+# Date Created: 09/03/2023
+# Date of Version Completion: 16/03/2023
 #
 # Description:
 # This script is designed to take a picture when the script is run. It should save the image in the current directory, which should be 'camera', with the nameing convention 
@@ -20,9 +19,9 @@
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------ Logging
+# ------------ Functions Logging and ImageCycle
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
-
+source  home/pi/github/smartsystemsmonitor-alt-255/camera/./PictureLimit.sh # Pulls the function script for image cycling
 # -------------Date command into variable for image name
 
 DATEFORMATV=$(date +"%Y%m%d%H%M%S")
@@ -34,14 +33,9 @@ DATEFORMATV=$(date +"%Y%m%d%H%M%S")
 
 cd /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures #Move to picture directory
 
-RaspiStill -o ${DATEFORMATV} 
-
-#libcamera-jpeg -n -o ${DATEFORMATV} (didnt work try RaspiStill) 
+libcamera-jpeg -n -o ${DATEFORMATV}.jpg
 
 cd /home/pi/github/smartsystemsmonitor-alt-255 #Move back to github repository
 
-
-#Could use libcamera-still --datetime but outputs as MMDDhhmmss.jpg (not iso 8601 standard)
-
 LOGGING "- Image taken, Saved to the Camera Directory" # Prints the current actions to the log.txt file. Camera directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
-
+IMAGECYCLE 

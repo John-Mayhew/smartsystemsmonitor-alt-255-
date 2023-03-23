@@ -1,2 +1,5 @@
-# Exlcludes Log.txt from Github's scope
+# Excludes files and directories from Github's scope, primarily logging, pictures, and stuff not needing to be version controlled. 
 logging/log.txt
+camera/pictures
+raspinfo.txt
+repoUpdate/repoUpdater.sh.save
