@@ -35,7 +35,7 @@ Version 1.0
 
 ---
 
-**:man_technologist: About Oliver Rushgadsby:**  
+**:man_technologist: About Oliver Rush-Gadsby:**  
 [or56@canterbury.ac.uk](or56@canterbury.ac.uk)
 - I am xxxx
 
@@ -44,5 +44,5 @@ Version 1.0
 
 **:woman_technologist: About Cameron Browne:**  
 [cb1258@canterbury.ac.uk](cb1258@canterbury.ac.uk)
-- I am xxx
+- I am Computer Forensics and Security student.
 
