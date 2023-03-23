@@ -9,37 +9,43 @@
 # John Mayhew           |       <jm1460@canterbury.ac.uk>
 # Cameron Browne        |       <cb1258@canterbury.ac.uk>
 # Cj Wilson             |       <c.wilson831@canterbury.ac.uk>
-# Oliver Rushgadsby     |       <or56@canterbury.ac.uk>
+# Oliver Rush-Gadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
 # Date Created: 01/03/2023
 # Date of Version Completion:
 #
 # Description:
-# This script was created to work in relation with Chrontab to automatically update from a remote Github repository every hour if changes are found.
-# The script will also be used to feed all logging information produced by this program into a log.txt file using the ISO 8601 standard for Date and Time, and logging format.
+# 
+# 
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # --------------------------------------- Declaring Variables
-#! /usr/bin/env bash
-#
-GOVDIR="/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
-AVAILGOVS=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors)
-CORES=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
+CPUDIR=/sys/devices/system/cpu/cpu0/cpufreq/
+NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
+COLUMNS=''
+HEADER="SCPU Policies\t| CORES 0:${NTHCORE}-->"
 
-while [[ 1 ]]; do
-        echo "Please select from the following governors:"
-        echo  "${AVAILGOVS}"
-
-        read GOV
-        # use grep to match input with sub string of AVAILGOVS
-        if grep -q "$GOV" <<< "${AVAILGOVS}"; then
-                break
-        fi
+for (( c=0; c<=${NTHCORE}; c++ ))
+do
+  COLUMNS="${COLUMNS} -"
 done
 
-echo -n "Changing the scaling_governor all ${CORES} to "
+echo -e ${HEADER}
 
-echo "${GOV}" | sudo tee ${GOVDIR}
-echo "Success your new Scaling Governor is ${GOV}"
+for i in ${CPUDIR}{cpuinfo,scaling}_*; do #iterate over the all cput frequencies
+  PNAME=$(basename $i)
+
+  [[ "${PNAME}" == *available* ]] || [[ "${PNAME}" == *transition* ]] || \
+  [[ "${PNAME}" == *driver* ]]    || [[ "${PNAME}" == *setspeed* ]] && continue
+
+  echo "${PNAME}: "
+
+  for (( j=0; j<${NTHCORE}; j++ ))
+  do
+  # replace cpu0 with cpuj for  /sys/devices/system/cpu/cpuj/cpufreq...
+    KPARAM=$(echo $i | sed "s/cpu0/cpu$j/") 
+    cat "${KPARAM}"
+  done
+done | paste ${COLUMNS} | column -t
