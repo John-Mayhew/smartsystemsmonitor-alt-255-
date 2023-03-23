@@ -15,13 +15,13 @@
 #
 # Description:
 # This script is designed to take a picture when the script is run. It should save the image in the current directory, which should be 'camera', with the nameing convention 
-# for each image being the ISO standard 8601 for date and time. It calls the PictureLimit.sh to delete the oldest image after an image has been taken to conserve memory.
+# for each image being the ISO standard 8601 for date and time.
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------ Functions Logging and ImageCycle
+# ------------ Functions Logging
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
-source  home/pi/github/smartsystemsmonitor-alt-255/camera/./PictureLimit.sh # Pulls the function script for image cycling
+
 # -------------Date command into variable for image name
 
 DATEFORMATV=$(date +"%Y%m%d%H%M%S")
@@ -38,4 +38,4 @@ libcamera-jpeg -n -o ${DATEFORMATV}.jpg
 cd /home/pi/github/smartsystemsmonitor-alt-255 #Move back to github repository
 
 LOGGING "- Image taken, Saved to the Camera Directory" # Prints the current actions to the log.txt file. Camera directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
-IMAGECYCLE 
+
