@@ -1,6 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
-#! /bin/bash -e
 #
 # Author: Group Alt 255
 #
@@ -12,20 +10,22 @@
 # Oliver Rush-Gadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
-# Date Created: 01/03/2023
+# Date Created: 23/03/2023
 # Date of Version Completion:
 #
 # Description:
-# 
-# 
+# This script is created to output frequency information about the CPU and will also include what governor is currently set. 
+# This script works along side setSpeed.sh and setGov.sh, which are used to change the governor and CPU speeds.
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # --------------------------------------- Declaring Variables
+
 CPUDIR=/sys/devices/system/cpu/cpu0/cpufreq/
 NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
 COLUMNS=''
 HEADER="SCPU Policies\t| CORES 0:${NTHCORE}-->"
+
 
 for (( c=0; c<=${NTHCORE}; c++ ))
 do
