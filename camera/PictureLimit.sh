@@ -21,7 +21,7 @@ source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls 
  {
    ls -tf *.jpg /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures > /home/pi/github/smartsystemsmonitor-alt-255/camera/ReverseFiles.txt    #list files in reverst time order and save them to the file
    OLDEST=$( tail -n 1 ReverseFiles.txt)        #sets the first value in the file as OLDEST
-   echo "${OLDEST}
+   echo "${OLDEST}"
 
   # Prints the current actions to the log.txt file. Picture directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
    LOGGING "- Oldest image removing from the Picture directory: $OLDEST."
