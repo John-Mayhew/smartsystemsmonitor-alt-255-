@@ -29,3 +29,5 @@ LOGGING()
 	now=$(printf "%([%FT%H:%M:%S])T" | awk -F [-T:] '{print$1$2$3$4$5$6}')
 	echo -e "${now} $1" >> ${logfile}
 }
+
+LOG_ROTATION
