@@ -36,7 +36,7 @@ echo -e ${HEADER}
 
 for i in ${CPUDIR}{cpuinfo,scaling}_*; do 
   PNAME=$(basename $i)
-#do not include these
+#do not include/print this information
   [[ "${PNAME}" == *available* ]] || [[ "${PNAME}" == *transition* ]] || \
   [[ "${PNAME}" == *driver* ]]    || [[ "${PNAME}" == *setspeed* ]] && continue
 
