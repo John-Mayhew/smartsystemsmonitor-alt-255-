@@ -11,7 +11,7 @@
 #
 # Version 1.0
 # Date Created: 23/03/2023
-# Date of Version Completion:
+# Date of Version Completion: 28/03/2023
 #
 # Description:
 # This script is created to output frequency information about the CPU and will also include what governor is currently set. 
@@ -36,7 +36,7 @@ echo -e ${HEADER}
 
 for i in ${CPUDIR}{cpuinfo,scaling}_*; do 
   PNAME=$(basename $i)
-
+#do not include/print this information
   [[ "${PNAME}" == *available* ]] || [[ "${PNAME}" == *transition* ]] || \
   [[ "${PNAME}" == *driver* ]]    || [[ "${PNAME}" == *setspeed* ]] && continue
 
@@ -44,7 +44,6 @@ for i in ${CPUDIR}{cpuinfo,scaling}_*; do
 
   for (( j=0; j<${NTHCORE}; j++ ))
   do
-  # replace cpu0 with cpuj for  /sys/devices/system/cpu/cpuj/cpufreq...
     KPARAM=$(echo $i | sed "s/cpu0/cpu$j/") 
     cat "${KPARAM}"
   done
