@@ -23,7 +23,7 @@
 import csv
 import os
 import time
-from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
+from /home/pi/grove.py/grove/grove_gas_sensor_mq5.py import GroveGasSensorMQ5
 from datetime import datetime
 #from envbash import load_envbash
 
