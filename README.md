@@ -2,7 +2,6 @@
 # **U14553-alt 255**
 
 ## Introduction
-This is a monitoring system designed to record temperature and gas readings at 30 minute intervals alongside taking a photo and upload them to the CCCU cloud storage network. 
 
 This is a monitoring system that is designed to take photos at 30 minute intervals while gathering data from sensors to ensure the Rasp Pi does not overheat. Readings from a temperature and humidity sensors alongside a gas sensor are taken during the same 30 minutre intervals as the camera as to...
 The images are then uploaded to the CCCU cloud storage network.
