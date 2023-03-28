@@ -31,7 +31,7 @@ status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines t
 fetchCount=0 # Break condition for while loop to prevent indefinite retries of git fetch
 pullCount=0 # Break conditon for the while loop performing the git pull incase of failure to prevent indefinite retries. 
 
-LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
+#LOGGING "- Current Directory is: ${repository}" # Prints the current working directory in the log.txt file.
 
 while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do
 
@@ -39,7 +39,6 @@ while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do
 	status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
 	sleep 20
 	let fetchCount++ # Increases the variable by 1 so that the while loop will break after 10 tries if ${status} is not filled before.
-#	LOGGING "${fetchCount}" # Test condition ** REMOVE
 
 done
 
