@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This is a monitoring system that is designed to take photos at 30 minute intervals while gathering data from sensors to ensure the Rasp Pi does not overheat. Readings from a temperature and humidity sensors alongside a gas sensor are taken during the same 30 minutre intervals as the camera as to...
+This is a monitoring system that is designed to take photos at 30 minute intervals while gathering data from sensors to ensure the Raspberry Pi 4 does not overheat. Readings from a temperature and humidity sensor alongside a gas sensor are taken during the same 30 minutre intervals as the camera as to help prevent overheating.
 The images are then uploaded to the CCCU cloud storage network.
 
 Within this system is a logging function that creates a record of when actions have been run and what they are for. This includes when changes are found in the github repository, through the use of Crontab, or when scripts are run to take a picture and when the environmental readings have been taken. The logging system saves the logs in a log.txt file using the ISO 8601 standard for Date and Time, and logging format.
