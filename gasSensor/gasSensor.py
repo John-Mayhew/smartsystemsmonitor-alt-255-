@@ -39,7 +39,7 @@ while True:
         # get and print the reading 
         timestamp = datetime.utcnow().isoformat()
         gas_reading = sensor.MQ5
-        print(f'{timestamp}: Gas value: {gas_reading}')
+        print('Gas value: {0}'.format(gas_reading))
         
         # sleep before getting a new reading
         time.sleep(1)
