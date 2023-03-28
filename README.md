@@ -12,8 +12,8 @@ Both power consumption and processing speed has been considered when designing t
 
 ## Prerequisites:
 * Python3 and the component PIP3 is used in the gas and temperature monitoring script monitoring script.
-
-
+* [Seeed Python DHT](https://github.com/Seeed-Studio/Seeed_Python_DHT) Provides for Tempeture and Humidity Sensory support (Version 0.0.1)  
+  * [Grove.py (Required by Seeed Python DHT)](https://github.com/Seeed-Studio/grove.py) provides support for Gas sensor, Tempeture and Humidity sensor  
 
 _Designed to work on Rasberry Pi OS lite 64 bit._
 

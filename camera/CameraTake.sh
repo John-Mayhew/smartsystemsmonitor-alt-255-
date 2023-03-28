@@ -19,9 +19,9 @@
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------ Functions Logging and ImageCycle
+# ------------ Functions Logging
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
-source  home/pi/github/smartsystemsmonitor-alt-255/camera/./PictureLimit.sh # Pulls the function script for image cycling
+
 # -------------Date command into variable for image name
 
 DATEFORMATV=$(date +"%Y%m%d%H%M%S")
@@ -38,4 +38,4 @@ libcamera-jpeg -n -o ${DATEFORMATV}.jpg
 cd /home/pi/github/smartsystemsmonitor-alt-255 #Move back to github repository
 
 LOGGING "- Image taken, Saved to the Camera Directory" # Prints the current actions to the log.txt file. Camera directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
-IMAGECYCLE 
+

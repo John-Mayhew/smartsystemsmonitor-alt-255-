@@ -26,10 +26,12 @@ MAX="scaling_max_freq"
 MIN="scaling_min_freq"
 # this is used to make the min and max the same as one another so that scaling is the same.
 CORES=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
-# sudo 
+
 sudo echo
 for (( c=0; c<${CORES}; c++))
 do
     echo -e ${FREQ} > ${CPUDIR}cpu${c}/cpufreq/${MIN}
+
     echo -e ${FREQ} > ${CPUDIR}cpu${c}/cpufreq/${MAX}
 done
+
