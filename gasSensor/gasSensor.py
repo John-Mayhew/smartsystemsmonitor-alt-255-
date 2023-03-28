@@ -20,6 +20,7 @@
 
 import csv
 import os
+import sys
 import time
 from datetime import datetime
 
@@ -27,7 +28,8 @@ from datetime import datetime
 #from grove.adc import ADC
 #from envbash import load_envbash
 
-from .home.pi.grove.grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
+sys.path.insert(0, '/home/pi/grove.py/grove')
+from grove_gas_sensor_mq5 import GroveGasSensorMQ5
 
 # connect sensor to analog port
 PIN = "0"
