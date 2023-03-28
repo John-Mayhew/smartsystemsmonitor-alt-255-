@@ -10,8 +10,8 @@
 # Oliver Rushgadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
-# Date Created: 01/03/2023
-# Date of Version Completion:
+# Date Created: 09/03/2023
+# Date of Version Completion: 16/03/2023
 #
 # Description:
 # This script is designed to take a picture when the script is run. It should save the image in the current directory, which should be 'camera', with the nameing convention 
@@ -19,7 +19,7 @@
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# ------------ Logging
+# ------------ Functions Logging
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
 
 # -------------Date command into variable for image name
