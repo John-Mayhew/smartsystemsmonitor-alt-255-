@@ -6,7 +6,7 @@ This is a monitoring system designed to record temperature and gas readings at 1
 
 Within this system is a logging function that allows for a record of when actions have been run and what they are for. This includes when changes are found in the github repository, through the use of Crontab, when script is run for a picture to be taken and the other environmental readings have been taken. The logging system saves the logs in a log.txt file using the ISO 8601 standard for Date and Time, and logging format.
 
-Both power consumtion and processing speed has been considered when designing this system so that it runs smoothly without the consumption of too much resources.
+Both power consumption and processing speed has been considered when designing this system so that it runs smoothly without the consumption of too much resources. There is a script that allow the frequency to be changed to whatever is requested and will not change allow the user to change the frequency to an unsuitable value, as well as another that will allow the governor to be changed to see if there are any difference when it is running.
 
 ## Prerequisites:
 * Python3 and the component PIP3 is used in the gas and temperature monitoring script monitoring script.
@@ -44,5 +44,5 @@ Version 1.0
 
 **:woman_technologist: About Cameron Browne:**  
 [cb1258@canterbury.ac.uk](cb1258@canterbury.ac.uk)
-- I am Computer Forensics and Security student.
+- I am Computer Forensics and Security student. Though I have had some practice, I also do not have a large amount of experience in bash but am very happy to learn and widen my knowledge of it as well as gaining a better understanding of using GitHub. 
 
