@@ -1,6 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
-#! /bin/bash -e
 #
 # Author: Group Alt 255
 #
@@ -9,11 +7,11 @@
 # John Mayhew           |       <jm1460@canterbury.ac.uk>
 # Cameron Browne        |       <cb1258@canterbury.ac.uk>
 # Cj Wilson             |       <c.wilson831@canterbury.ac.uk>
-# Oliver Rushgadsby     |       <or56@canterbury.ac.uk>
+# Oliver Rush-Gadsby     |       <or56@canterbury.ac.uk>
 #
 # Version 1.0
 # Date Created: 01/03/2023
-# Date of Version Completion:
+# Date of Version Completion: 28/03/2023
 #
 # Description:
 # This script was created to work in relation with Chrontab to automatically update from a remote Github repository every hour if changes are found.

@@ -1,6 +1,4 @@
-#! /usr/bin/env bash
-#! /bin/sh
-#! /bin/bash -e
+#! /usr/bin/env python
 #
 # Author: Group Alt 255
 #
@@ -23,8 +21,12 @@
 import csv
 import os
 import time
-from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
 from datetime import datetime
+
+import grovepi
+from grove.adc import ADC
+#from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
+
 #from envbash import load_envbash
 
 # connect sensor to analog port
