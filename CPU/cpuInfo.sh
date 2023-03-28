@@ -22,10 +22,10 @@
 # --------------------------------------- Declaring Variables
 
 CPUDIR=/sys/devices/system/cpu/cpu0/cpufreq/
-NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
+NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}') 
 COLUMNS=''
 HEADER="SCPU Policies\t| CORES 0:${NTHCORE}-->"
-
+# finding and acknowledging all cores
 
 for (( c=0; c<=${NTHCORE}; c++ ))
 do
@@ -34,7 +34,7 @@ done
 
 echo -e ${HEADER}
 
-for i in ${CPUDIR}{cpuinfo,scaling}_*; do #iterate over the all cput frequencies
+for i in ${CPUDIR}{cpuinfo,scaling}_*; do 
   PNAME=$(basename $i)
 
   [[ "${PNAME}" == *available* ]] || [[ "${PNAME}" == *transition* ]] || \
@@ -49,3 +49,4 @@ for i in ${CPUDIR}{cpuinfo,scaling}_*; do #iterate over the all cput frequencies
     cat "${KPARAM}"
   done
 done | paste ${COLUMNS} | column -t
+# print frequency information and what governor is set.
