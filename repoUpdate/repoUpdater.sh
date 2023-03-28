@@ -48,14 +48,15 @@ if [[ ${status} != '[up to date]' ]]; then # If Git fetch returns anything other
 #	LOGGING "-${gitPull}" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
 
-	while [[ $? != 0 && ${pullCount} -lt 10 ]]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
+	while [[ ${pullStatus} != 0 && ${pullCount} -lt 10 ]]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
 	do
 
-		git pull # Pulls from the remote repository
+		git pull --progress # Pulls from the remote repository
+		pullStatus=$?
 		LOGGING "- Git pull failed (exit code 1), running git pull again" # Logging the failure every time the loop is run - Should run until completed. 
 		sleep 60
 		let pullCount++ # Increases the variable by 1 so that the while loop will break after 10 tries if not successful and the error code is still reporting as 1 (Failure)
-
+		
 		if [[ $? == 0 ]]; then # If exit code = 0 (successful) then the git pull has completed without failure.
 
 			LOGGING "- Git Pull successful, Exit code 0, process sleeping until next scheduled event" # Logging that the git pull was successful. 
