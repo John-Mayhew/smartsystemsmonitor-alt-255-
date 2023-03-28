@@ -23,9 +23,9 @@ import os
 import time
 from datetime import datetime
 
-import grovepi
-from grove.adc import ADC
-from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
+#import grovepi
+#from grove.adc import ADC
+from .home.pi.grove.grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
 
 #from envbash import load_envbash
 
@@ -36,7 +36,6 @@ sensor = GroveGasSensorMQ5(PIN)
 # logging (?)
 #load_envbash('/home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh')
 #os.environ['LOGGING "- Creating new gas readings"']
-
 
 directory = 'home/pi/github/smartsystemsmonitor-alt-255/logging'
 filename = "gas_sensor_data.csv"
