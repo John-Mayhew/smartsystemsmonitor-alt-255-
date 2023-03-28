@@ -25,7 +25,7 @@ from datetime import datetime
 
 import grovepi
 from grove.adc import ADC
-from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
+#from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
 
 #from envbash import load_envbash
 
