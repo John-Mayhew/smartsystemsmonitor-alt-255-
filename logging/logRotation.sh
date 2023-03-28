@@ -11,7 +11,7 @@
 #
 # Version 1.0
 # Date Created: 28/03/2023
-# Date of Version Completion:
+# Date of Version Completion:28/03/2023
 #
 # Description:
 # This script is for the log rotation; it is used to remove every line after the 100th line to keep the log file clean and up to date. 
