@@ -20,6 +20,7 @@
 #
 #----------------------------------------------------------------------------------------------------
 
+import csv
 import os
 import time
 from grove.grove_gas_sensor_mq5 import GroveGasSensorMQ5
@@ -47,22 +48,20 @@ with open(file_path, 'w', newline='') as file:
     writer.writerow(["Timestamp", "Gas Sensor Data (ppm)"])
     
     while True:
-    
-    try:
-        # get and print the reading 
-        timestamp = datetime.utcnow().isoformat()
-        gas_reading = sensor.MQ5
+          try:
+            # get and print the reading 
+            timestamp = datetime.utcnow().isoformat()
+            gas_reading = sensor.MQ5
 
-        print('{0} - Gas value: {1}'.format(timestamp, gas_reading))
+            print('{0} - Gas value: {1}'.format(timestamp, gas_reading))
         
-        # write data to file
-        writer.writerow([timestamp, gas_reading])
+            # write data to file
+            writer.writerow([timestamp, gas_reading])
         
-        # sleep before getting a new reading
-        time.sleep(1)
-
-    # if ctrl+c is pressed; stop
-    except KeyboardInterrupt
-        break
+            # sleep before getting a new reading
+            time.sleep(1)
+            # if ctrl+c is pressed; stop
+          except KeyboardInterrupt:
+            break
 
 # print(dir(sensor))
