@@ -40,11 +40,11 @@ while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do
 
 done
 
-if ! [[ ${status} ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
+if [[ -n ${status} ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
 
 	LOGGING "- Repository requires an update, updating now" # Logging to say that the local repository does not match the remote repository and therefore requires an update. 
 	gitPull=$(git pull -va 2>&1 | grep -w "main") # Parses the result of git pull to a variable so that this can be used later for logging.
-	LOGGING "$({gitPull})" # Logging the git pull so that we can monitor failures.
+	LOGGING "- ${gitPull}" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
 
 	while [[ $? != 0 && ${pullCount} -lt 10 ]]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
