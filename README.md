@@ -44,5 +44,5 @@ Version 1.0
 
 **:woman_technologist: About Cameron Browne:**  
 [cb1258@canterbury.ac.uk](cb1258@canterbury.ac.uk)
-- I am Computer Forensics and Security student. Though I have had some practice, I also do not have a large amount of experience in bash but am very happy to learn and widen my knowledge of it as well as gaining a better understanding of using GitHub. 
+- I am Computer Forensics and Security student. Though I have had some practice, I also do not have a large amount of experience in bash but am very happy to learn and widen my knowledge of it as well as gaining a better understanding of how to use GitHub. 
 
