@@ -34,12 +34,29 @@ sensor = GroveGasSensorMQ5(PIN)
 #load_envbash('/home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh')
 #os.environ['LOGGING "- Creating new gas readings"']
 
-while True:
+
+directory = 'home/pi/github/smartsystemsmonitor-alt-255/logging'
+filename = "gas_sensor_data.csv"
+
+file_path = os.path.join(directory, filename)
+
+# open file to store data
+with open(file_path, 'w', newline='') as file:
+    writer = csv.writer(file)
+    # add headings to file
+    writer.writerow(["Timestamp", "Gas Sensor Data (ppm)"])
+    
+    while True:
+    
     try:
         # get and print the reading 
         timestamp = datetime.utcnow().isoformat()
         gas_reading = sensor.MQ5
-        print('Gas value: {0}'.format(gas_reading))
+
+        print('{0} - Gas value: {1}'.format(timestamp, gas_reading))
+        
+        # write data to file
+        writer.writerow([timestamp, gas_reading])
         
         # sleep before getting a new reading
         time.sleep(1)
