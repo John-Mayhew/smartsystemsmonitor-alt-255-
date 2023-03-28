@@ -2,11 +2,14 @@
 # **U14553-alt 255**
 
 ## Introduction
-This is a monitoring system designed to record temperature and gas readings at 15 minute intervals alongside taking a photo and upload them to the CCCU cloud storage network. 
+This is a monitoring system designed to record temperature and gas readings at 30 minute intervals alongside taking a photo and upload them to the CCCU cloud storage network. 
 
-Within this system is a logging function that allows for a record of when actions have been run and what they are for. This includes when changes are found in the github repository, through the use of Crontab, when script is run for a picture to be taken and the other environmental readings have been taken. The logging system saves the logs in a log.txt file using the ISO 8601 standard for Date and Time, and logging format.
+This is a monitoring system that is designed to take photos at 30 minute intervals while gathering data from sensors to ensure the Rasp Pi does not overheat. Readings from a temperature and humidity sensors alongside a gas sensor are taken during the same 30 minutre intervals as the camera as to...
+The images are then uploaded to the CCCU cloud storage network.
 
-Both power consumption and processing speed has been considered when designing this system so that it runs smoothly without the consumption of too much resources. There is a script that allow the frequency to be changed to whatever is requested and will not change allow the user to change the frequency to an unsuitable value, as well as another that will allow the governor to be changed to see if there are any difference when it is running.
+Within this system is a logging function that creates a record of when actions have been run and what they are for. This includes when changes are found in the github repository, through the use of Crontab, or when scripts are run to take a picture and when the environmental readings have been taken. The logging system saves the logs in a log.txt file using the ISO 8601 standard for Date and Time, and logging format.
+
+Both power consumption and processing speed has been considered when designing this system so that it runs smoothly without the consumption of too much resources. There is a script that allow the frequency to be changed to whatever is requested and will not allow the user to change the frequency to an unsuitable value, as well as another that will allow the governor to be changed to see if there ia any difference when it is running. One of things we need to consider and take into account when doing this is that we do not wish to overheat the Rasp Pi by speeding up the clock speed, which results in the required use of gas, temperature and humidity sensors in this monitoring system.
 
 ## Prerequisites:
 * Python3 and the component PIP3 is used in the gas and temperature monitoring script monitoring script.
