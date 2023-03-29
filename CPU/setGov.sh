@@ -1,6 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
-#! /bin/bash -e
 #
 # Author: Group Alt 255
 #
@@ -13,12 +11,12 @@
 #
 # Version 1.0
 # Date Created: 23/03/2023
-# Date of Version Completion:
+# Date of Version Completion:28/03/2023
 #
 # Description:
-# This script is created to to change the current governor to another. 
-# This script is used to work along side setSpeed.sh and cpuInfo.sh, which are used to change the governor and CPU speeds.
-#
+# This script is created to manually change the current governor to another. 
+# This script is used to work along side setSpeed.sh and cpuInfo.sh, which are used to show information about what governor is being used and 
+# the CPU speeds.
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # --------------------------------------- Declaring Variables
@@ -31,13 +29,13 @@ while [[ 1 ]]; do
         echo  "${AVAILGOVS}"
 
         read GOV
-        # use grep to match input with sub string of AVAILGOVS
+        # reading user input so it knows the desired governor.
         if grep -q "$GOV" <<< "${AVAILGOVS}"; then
                 break
         fi
 done
-
+# this shows that the governor has been changed and what is has been changed to.
 echo -n "Changing the scaling_governor all ${CORES} to "
 
 echo "${GOV}" | sudo tee ${GOVDIR}
-echo "Success your new Scaling Governor is ${GOV}"
+echo "Your new Scaling Governor is ${GOV}"

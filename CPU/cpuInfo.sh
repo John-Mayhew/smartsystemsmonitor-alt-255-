@@ -11,7 +11,7 @@
 #
 # Version 1.0
 # Date Created: 23/03/2023
-# Date of Version Completion:
+# Date of Version Completion: 28/03/2023
 #
 # Description:
 # This script is created to output frequency information about the CPU and will also include what governor is currently set. 
@@ -22,10 +22,10 @@
 # --------------------------------------- Declaring Variables
 
 CPUDIR=/sys/devices/system/cpu/cpu0/cpufreq/
-NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
+NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}') 
 COLUMNS=''
 HEADER="SCPU Policies\t| CORES 0:${NTHCORE}-->"
-
+# finding and acknowledging all cores
 
 for (( c=0; c<=${NTHCORE}; c++ ))
 do
@@ -34,9 +34,9 @@ done
 
 echo -e ${HEADER}
 
-for i in ${CPUDIR}{cpuinfo,scaling}_*; do #iterate over the all cput frequencies
+for i in ${CPUDIR}{cpuinfo,scaling}_*; do 
   PNAME=$(basename $i)
-
+#do not include/print this information
   [[ "${PNAME}" == *available* ]] || [[ "${PNAME}" == *transition* ]] || \
   [[ "${PNAME}" == *driver* ]]    || [[ "${PNAME}" == *setspeed* ]] && continue
 
@@ -44,8 +44,8 @@ for i in ${CPUDIR}{cpuinfo,scaling}_*; do #iterate over the all cput frequencies
 
   for (( j=0; j<${NTHCORE}; j++ ))
   do
-  # replace cpu0 with cpuj for  /sys/devices/system/cpu/cpuj/cpufreq...
     KPARAM=$(echo $i | sed "s/cpu0/cpu$j/") 
     cat "${KPARAM}"
   done
 done | paste ${COLUMNS} | column -t
+# print frequency information and what governor is set.
