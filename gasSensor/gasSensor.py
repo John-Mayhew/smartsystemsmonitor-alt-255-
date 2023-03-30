@@ -11,10 +11,10 @@
 #
 # Version 1.0
 # Date Created: 09/03/2023
-# Date of Version Completion:
+# Date of Version Completion: 30/03/23
 #
 # Description:
-# This script gets data from the MQ-5 gas sensor connected to the Raspberry Pi where this data will eventually be sent to external storage.
+# This script gets data from the MQ-5 gas sensor connected to the Raspberry Pi and stores it into a file, where this data will eventually be sent to external storage.
 #
 #----------------------------------------------------------------------------------------------------
 
@@ -23,6 +23,7 @@ import csv
 import sys
 import time
 from datetime import datetime
+from envbash import load_envbash
 
 # import grove.py libraries
 sys.path.insert(0, '/home/pi/grove.py/grove')
@@ -36,12 +37,15 @@ file_path = os.path.join(directory, filename)
 def main():
     sensor = GroveGasSensorMQ5(0) # connect sensor to analog port A0
     
+    # use the logging script to make a log that this script ran 
+    #load_envbash('/home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh')
+    #os.environ['LOGGING "- Creating new gas readings"']
+    
     with open(file_path, 'w', newline='') as file: # open file
         writer = csv.writer(file)
         writer.writerow(["Timestamp", "Gas Value"]) # write headings to file
 
-        while True:
-            try:
+        for i in range(10): 
             # get the time stamp and gas reading 
              timestamp = datetime.utcnow().isoformat()
              gas_reading = sensor.MQ5
@@ -50,8 +54,5 @@ def main():
             
              writer.writerow([timestamp, gas_reading]) # write timestamp and gas values to file
              time.sleep(1) # sleep before getting a new reading
-            
-            except KeyboardInterrupt:  # if ctrl+c is pressed; stop
-                break
-
+           
 main()
