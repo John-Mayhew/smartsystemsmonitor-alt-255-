@@ -26,7 +26,9 @@ source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls 
 
   # Prints the current actions to the log.txt file. Picture directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
    LOGGING "- Oldest image removing from the Picture directory: $OLDEST."
+   cd /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
    rm ${OLDEST}   #deletes the oldest file
    LOGGING "-Oldest image has been removed: $OLDEST."   #Prints the deletion to log.txt
+   cd /home/pi/github/smartsystemsmonitor-alt-255
  }
  fi
