@@ -35,23 +35,20 @@ file_path = os.path.join(directory, filename)
 
 def main():
     sensor = GroveGasSensorMQ5(0) # connect sensor to analog port A0
-    
+
     with open(file_path, 'w', newline='') as file: # open file
         writer = csv.writer(file)
         writer.writerow(["Timestamp", "Gas Value"]) # write headings to file
 
-        while True:
-            try:
-            # get the time stamp and gas reading 
+        for i in range(10):
+
+            # get the time stamp and gas reading
              timestamp = datetime.utcnow().isoformat()
              gas_reading = sensor.MQ5
-        
+
              print('{0} - Gas value: {1}'.format(timestamp, gas_reading)) # print the values
-            
+
              writer.writerow([timestamp, gas_reading]) # write timestamp and gas values to file
              time.sleep(1) # sleep before getting a new reading
-            
-            except KeyboardInterrupt:  # if ctrl+c is pressed; stop
-                break
 
 main()

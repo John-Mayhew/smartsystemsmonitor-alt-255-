@@ -19,6 +19,8 @@
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------import os
 import time
+import os
+import sys
 from datetime import datetime
 import csv
 import seeed_dht
@@ -34,8 +36,8 @@ def main():
 	with open(file_path, 'w', newline='') as file:
 		writer = csv.writer(file)
 		writer.writerow(["Timestamp", "Temperature", "Humidity"])
-# this allows for it to write the readings to readings.csv
-		while True:
+	# this allows for it to write the readings to readings.csv
+		for i in range(10):
 			humi, temp = sensor.read()
 			if not humi is None: # if there are readings that can be found, print these with a timestamp.
 				timestamp = datetime.utcnow().isoformat()
