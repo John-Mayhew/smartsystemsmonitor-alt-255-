@@ -20,17 +20,21 @@
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # --------------------------------------- Declaring Variables
 
-import Adafruit_DHT
+import seeed_dht
+import time
 
-DHT_SENSOR = Adafruit_DHT.DHT22
-DHT_PIN = 4
+def main():
+# DHT_SENSOR = Adafruit_DHT.DHT22
+DHT_SENSOR = seeed_dht.DHT22
+DHT_PIN = 12 # the slot is PWD so the pin is 12
 
 while True:
   humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
-  
-  if = humidity is not Noe and temperature is not None:
+# humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+  if = humidity is not None and temperature is not None:
     print("Temp={0:0.1f}*C Humidity={1:0.1}%".format(temperature, humidity))
     else:
     print("Failed to retrieve data from humidity sensor")
-    
+    # prints the temperature and humidity if there are readable values, though if there is nothing print this
+main()
    
