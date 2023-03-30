@@ -27,7 +27,7 @@ source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Source
 cd /home/pi/github/smartsystemsmonitor-alt-255 # Sets the directory that the script will run from, allows for access to git commands because they require visability of the .git files.
 
 repository=$(pwd) # Prints the working directory and parses this value into $Repository.
-status=$(git fetch -va 2>&1 | grep -w main | grep -w '[up to date]') # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
+status=$(git fetch -va 2>&1 | grep -w 'main' | grep -w '[up to date]') # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
 fetchCount=0 # Break condition for while loop to prevent indefinite retries of git fetch
 pullCount=0 # Break conditon for the while loop performing the git pull incase of failure to prevent indefinite retries. 
 
