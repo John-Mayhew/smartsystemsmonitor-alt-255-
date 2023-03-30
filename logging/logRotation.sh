@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/bash
 #
 # Author: Group Alt 255
 #
@@ -19,18 +19,15 @@
 #
 
 logPath=/home/pi/github/smartsystemsmonitor-alt-255/logging/log.txt
+currentSize=$(wc -c < "${logPath}")
+maxSize=2097152 # 2MB
 
-#LOG_ROTATION()
-#{
+	if [ "${currentSize}" -gt "${maxSize}" ]; then
 
-	LFLC=$(wc -l ${logPath}) # LFLC - Log File Line Counter | Counts the lines in the log.txt file and cycles the oldest log.
-	echo ${LFLC}
-	echo \n
-	echo ${logPath}
+		mv ${logPath}.1.gz ${logPath}.2.gz || continue
 
-	if [[ ${LFLC} -gt 200 ]]; then
-		TIMESTAMP=$(printf "%([%FT%H:%M:%S])T" | awk -F [-T:] '{print$1$2$3$4$5$6}')
-		gzip -c ${logPath} > log+=${TIMESTAMP}
+		ogger "ace:rotatelogs" "rotating log shifting by 1"
+
+		gzip -c ${logPath}.txt > ${logPath}.1.gz
 
 	fi
-#}
