@@ -40,7 +40,7 @@ while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do
 
 done
 
-if  [[ -z $( echo ${status} | grep -o "[up to date]" ) ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
+if  [[ -z $( echo ${status} | grep -w -o "[up to date]" ) ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
 
 	LOGGING "- Repository requires an update, updating now" # Logging to say that the local repository does not match the remote repository and therefore requires an update. 
 	git pull --progress
