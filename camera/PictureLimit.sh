@@ -14,18 +14,24 @@
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # ------------ Logging
 source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls the funciton script for logging
- 
+CAMERADIR=/home/pi/github/smartsystemsmonitor-alt-255/camera/
+
 # -------------Image removal
- if [[ $(find /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures -type f | wc -l)  -gt 48 ]]; then #Check the amount of files in the picture directory                 
+
+ while [  $(find /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures -type f | wc -l) -gt 48 ]
+ do #Check the amount of files in the picture directory                 
         #if it is greater than 48, it will do the following.
- {
-   ls -t home/pi/github/smartsystemsmonitor-alt-255/camera/pictures *.jpg > /home/pi/github/smartsystemsmonitor-alt-255/camera/ReverseFiles.txt    #list files in reverst time order and save them to the file
-   OLDEST=$( tail -n 1 < ReverseFiles.txt)        #sets the first value in the file as OLDEST
+ 
+   sed -i 'd' ${CAMERADIR}ReverseFiles.txt
+   ls -t ${CAMERADIR}pictures/*.jpg > ${CAMERADIR}ReverseFiles.txt    #list files in time order and save them to the file
+   OLDEST=$( tail -n 1 < ${CAMERADIR}ReverseFiles.txt)        #sets the last value in the file as OLDEST
    echo "${OLDEST}"
 
   # Prints the current actions to the log.txt file. Picture directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
    LOGGING "- Oldest image removing from the Picture directory: $OLDEST."
-   rm ${OLDEST}   #deletes the oldest file
+   cd /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
+   rm -f ${OLDEST}   #deletes the oldest file
    LOGGING "-Oldest image has been removed: $OLDEST."   #Prints the deletion to log.txt
- }
- fi
+   cd /home/pi/github/smartsystemsmonitor-alt-255
+ 
+ done

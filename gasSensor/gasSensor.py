@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 #
 # Author: Group Alt 255
 #
@@ -18,53 +18,40 @@
 #
 #----------------------------------------------------------------------------------------------------
 
-import csv
 import os
+import csv
 import sys
 import time
 from datetime import datetime
 
-#import grovepi
-#from grove.adc import ADC
-#from envbash import load_envbash
-
+# import grove.py libraries
 sys.path.insert(0, '/home/pi/grove.py/grove')
 from grove_gas_sensor_mq5 import GroveGasSensorMQ5
 
-# connect sensor to analog port
-PIN = "0"
-sensor = GroveGasSensorMQ5(PIN)
-
-# logging (?)
-#load_envbash('/home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh')
-#os.environ['LOGGING "- Creating new gas readings"']
-
-directory = 'home/pi/github/smartsystemsmonitor-alt-255/logging'
+# get the path of the file to write data to
+directory = '/home/pi/github/smartsystemsmonitor-alt-255/logging'
 filename = "gas_sensor_data.csv"
-
 file_path = os.path.join(directory, filename)
 
-# open file to store data
-with open(file_path, 'w', newline='') as file:
-    writer = csv.writer(file)
-    # add headings to file
-    writer.writerow(["Timestamp", "Gas Sensor Data (ppm)"])
+def main():
+    sensor = GroveGasSensorMQ5(0) # connect sensor to analog port A0
     
-    while True:
-          try:
-            # get and print the reading 
-            timestamp = datetime.utcnow().isoformat()
-            gas_reading = sensor.MQ5
+    with open(file_path, 'w', newline='') as file: # open file
+        writer = csv.writer(file)
+        writer.writerow(["Timestamp", "Gas Value"]) # write headings to file
 
-            print('{0} - Gas value: {1}'.format(timestamp, gas_reading))
+        while True:
+            try:
+            # get the time stamp and gas reading 
+             timestamp = datetime.utcnow().isoformat()
+             gas_reading = sensor.MQ5
         
-            # write data to file
-            writer.writerow([timestamp, gas_reading])
-        
-            # sleep before getting a new reading
-            time.sleep(1)
-            # if ctrl+c is pressed; stop
-          except KeyboardInterrupt:
-            break
+             print('{0} - Gas value: {1}'.format(timestamp, gas_reading)) # print the values
+            
+             writer.writerow([timestamp, gas_reading]) # write timestamp and gas values to file
+             time.sleep(1) # sleep before getting a new reading
+            
+            except KeyboardInterrupt:  # if ctrl+c is pressed; stop
+                break
 
-# print(dir(sensor))
+main()
