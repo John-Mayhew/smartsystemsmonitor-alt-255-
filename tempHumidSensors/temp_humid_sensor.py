@@ -11,10 +11,10 @@
 #
 # Version 1.0
 # Date Created: 28/03/2023
-# Date of Version Completion:
+# Date of Version Completion: /03/2023
 #
 # Description:
-# This script was created to read temperature and humidity readings from the sensor.
+# This script was created to print temperature and humidity readings from the sensor.
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
