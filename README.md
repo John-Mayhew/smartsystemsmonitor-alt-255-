@@ -64,7 +64,7 @@ _Email: [cw831@canterbury.ac.uk](c.wilson831@canterbury.ac.uk)_
 
 **:man_technologist:  Oliver Rush-Gadsby:**  
 _Email: [or56@canterbury.ac.uk](or56@canterbury.ac.uk)_
-- I am xxxx
+- I am currently studying Computer Forensics and Security as an undergraduate. I have little knowledge and experience in using bash and other similar languages although I am willing to amend this and improve my understanding around it as well as the project development aspect also. 
 
 ---
 

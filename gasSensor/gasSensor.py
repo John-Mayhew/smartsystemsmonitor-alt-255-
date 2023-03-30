@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 #
 # Author: Group Alt 255
 #
@@ -18,53 +18,30 @@
 #
 #----------------------------------------------------------------------------------------------------
 
-import csv
-import os
 import sys
 import time
 from datetime import datetime
 
-#import grovepi
-#from grove.adc import ADC
-#from envbash import load_envbash
-
+# import grove.py libraries
 sys.path.insert(0, '/home/pi/grove.py/grove')
 from grove_gas_sensor_mq5 import GroveGasSensorMQ5
 
-# connect sensor to analog port
-PIN = "0"
-sensor = GroveGasSensorMQ5(PIN)
+def main():
 
-# logging (?)
-#load_envbash('/home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh')
-#os.environ['LOGGING "- Creating new gas readings"']
+    sensor = GroveGasSensorMQ5(0) # connect sensor to analog port A0
 
-directory = '/home/pi/github/smartsystemsmonitor-alt-255/logging'
-filename = "gas_sensor_data.csv"
-
-file_path = os.path.join(directory, filename)
-
-# open file to store data
-with open(file_path, 'w', newline='') as file:
-    writer = csv.writer(file)
-    # add headings to file
-    writer.writerow(["Timestamp", "Gas Sensor Data (ppm)"])
-    
     while True:
-          try:
-            # get and print the reading 
+        try:
+            # get the time stamp and reading 
             timestamp = datetime.utcnow().isoformat()
             gas_reading = sensor.MQ5
-
-            print('{0} - Gas value: {1}'.format(timestamp, gas_reading))
         
-            # write data to file
-            writer.writerow([timestamp, gas_reading])
+            print('{0} - Gas value: {1}'.format(timestamp, gas_reading)) # print the values
         
-            # sleep before getting a new reading
-            time.sleep(1)
-            # if ctrl+c is pressed; stop
-          except KeyboardInterrupt:
+            time.sleep(1) # sleep before getting a new reading
+        
+        except KeyboardInterrupt:  # if ctrl+c is pressed; stop
             break
-
 # print(dir(sensor))
+
+main()
