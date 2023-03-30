@@ -31,5 +31,4 @@ LOGGING()
 	echo -e "${now} $1" >> ${logfile}
 }
 
-LOG_ROTATION
-
+#LOG_ROTATION
