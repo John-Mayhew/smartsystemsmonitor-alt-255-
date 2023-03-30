@@ -7,3 +7,5 @@ repoUpdate/repoUpdater.sh.save
 gasSensor/__pycache__/
 logging/gas_sensor_data.csv
 tempHumidSensors/.temp_humid_sensor.py.swp
+tempHumidSensors/.temp.py.swp
+tempHumidSensors/readings.txt
