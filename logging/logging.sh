@@ -22,6 +22,7 @@
 # --------------------------------------- Declaring Variables
 #! /usr/bin/env bash
 #
+source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logRotation.sh
 logfile=/home/pi/github/smartsystemsmonitor-alt-255/logging/log.txt #sets the location of the log file that will be used to store all logs
 
 LOGGING()
@@ -30,4 +31,5 @@ LOGGING()
 	echo -e "${now} $1" >> ${logfile}
 }
 
-LOG_ROTATION
+#LOG_ROTATION
+

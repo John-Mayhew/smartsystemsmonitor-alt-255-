@@ -4,3 +4,5 @@ camera/pictures
 camera/ReverseFiles.txt
 raspinfo.txt
 repoUpdate/repoUpdater.sh.save
+gasSensor/__pycache__/
+logging/gas_sensor_data.csv

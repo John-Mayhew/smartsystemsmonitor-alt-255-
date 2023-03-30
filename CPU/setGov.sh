@@ -1,6 +1,4 @@
 #! /usr/bin/env bash
-#! /bin/sh
-#! /bin/bash -e
 #
 # Author: Group Alt 255
 #
@@ -13,7 +11,7 @@
 #
 # Version 1.0
 # Date Created: 23/03/2023
-# Date of Version Completion:
+# Date of Version Completion:28/03/2023
 #
 # Description:
 # This script is created to manually change the current governor to another. 
