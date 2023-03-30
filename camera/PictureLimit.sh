@@ -21,7 +21,7 @@ source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Pulls 
  {
    sed -i 'd' ReverseFiles.txt
    ls -t /home/pi/github/smartsystemsmonitor-alt-255/camera/pictures *.jpg > /home/pi/github/smartsystemsmonitor-alt-255/camera/ReverseFiles.txt    #list files in time order and save them to the file
-   OLDEST=$( tail -n 1 < ReverseFiles.txt)        #sets the first value in the file as OLDEST
+   OLDEST=$( tail -n 1 < ReverseFiles.txt)        #sets the last value in the file as OLDEST
    echo "${OLDEST}"
 
   # Prints the current actions to the log.txt file. Picture directory: home/pi/github/smartsystemsmonitor-alt-255/camera/pictures
