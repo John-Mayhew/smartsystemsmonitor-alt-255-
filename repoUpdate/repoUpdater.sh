@@ -47,6 +47,7 @@ if  [[ -z $( echo ${status} | grep -w -o "[up to date]" ) ]]; then # If Git fetc
 #	gitPull=$(git pull -va 2>&1 | grep -w "main") # Parses the result of git pull to a variable so that this can be used later for logging.
 #	LOGGING "-${gitPull}" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
+	pullStatus=$?
 
 	while [[ ${pullStatus} != 0 && ${pullCount} -lt 10 ]]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
 	do
@@ -57,7 +58,7 @@ if  [[ -z $( echo ${status} | grep -w -o "[up to date]" ) ]]; then # If Git fetc
 		sleep 60
 		let pullCount++ # Increases the variable by 1 so that the while loop will break after 10 tries if not successful and the error code is still reporting as 1 (Failure)
 		
-		if [[ $? == 0 ]]; then # If exit code = 0 (successful) then the git pull has completed without failure.
+		if [[ ${pullStatus} == 0 ]]; then # If exit code = 0 (successful) then the git pull has completed without failure.
 
 			LOGGING "- Git Pull successful, Exit code 0, process sleeping until next scheduled event" # Logging that the git pull was successful. 
 			echo $?
