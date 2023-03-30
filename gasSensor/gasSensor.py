@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 #
 # Author: Group Alt 255
 #
@@ -22,21 +22,26 @@ import sys
 import time
 from datetime import datetime
 
+# import grove.py libraries
 sys.path.insert(0, '/home/pi/grove.py/grove')
 from grove_gas_sensor_mq5 import GroveGasSensorMQ5
 
-sensor = GroveGasSensorMQ5(0) # connect sensor to analog port A0
+def main():
 
-while True:
-      try:
-        # get the time stamp and reading 
-        timestamp = datetime.utcnow().isoformat()
-        gas_reading = sensor.MQ5
+    sensor = GroveGasSensorMQ5(0) # connect sensor to analog port A0
+
+    while True:
+        try:
+            # get the time stamp and reading 
+            timestamp = datetime.utcnow().isoformat()
+            gas_reading = sensor.MQ5
         
-        print('{0} - Gas value: {1}'.format(timestamp, gas_reading)) # print the values
+            print('{0} - Gas value: {1}'.format(timestamp, gas_reading)) # print the values
         
-        time.sleep(1) # sleep before getting a new reading
+            time.sleep(1) # sleep before getting a new reading
         
-      except KeyboardInterrupt:  # if ctrl+c is pressed; stop
-        break
+        except KeyboardInterrupt:  # if ctrl+c is pressed; stop
+            break
 # print(dir(sensor))
+
+main()
