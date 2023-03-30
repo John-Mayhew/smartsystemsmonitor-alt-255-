@@ -27,7 +27,7 @@ source /home/pi/github/smartsystemsmonitor-alt-255/logging/./logging.sh # Source
 cd /home/pi/github/smartsystemsmonitor-alt-255 # Sets the directory that the script will run from, allows for access to git commands because they require visability of the .git files.
 
 repository=$(pwd) # Prints the working directory and parses this value into $Repository.
-status=$(git fetch -va 2>&1 | grep -w main | grep -w '[up to date]') # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
+status=$(git fetch -va 2>&1 | grep -w 'main' | grep -w "[up to date]") # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
 fetchCount=0 # Break condition for while loop to prevent indefinite retries of git fetch
 pullCount=0 # Break conditon for the while loop performing the git pull incase of failure to prevent indefinite retries. 
 
@@ -40,13 +40,14 @@ while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do
 
 done
 
-if  [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
+if  [[ -z $( echo ${status} | grep -w -o "[up to date]" ) ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
 
 	LOGGING "- Repository requires an update, updating now" # Logging to say that the local repository does not match the remote repository and therefore requires an update. 
 	git pull --progress
 #	gitPull=$(git pull -va 2>&1 | grep -w "main") # Parses the result of git pull to a variable so that this can be used later for logging.
 #	LOGGING "-${gitPull}" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
+	pullStatus=$?
 
 	while [[ ${pullStatus} != 0 && ${pullCount} -lt 10 ]]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
 	do
@@ -57,7 +58,7 @@ if  [[ ! ${status} ]]; then # If Git fetch returns anything other then "up-to-da
 		sleep 60
 		let pullCount++ # Increases the variable by 1 so that the while loop will break after 10 tries if not successful and the error code is still reporting as 1 (Failure)
 		
-		if [[ $? == 0 ]]; then # If exit code = 0 (successful) then the git pull has completed without failure.
+		if [[ ${pullStatus} == 0 ]]; then # If exit code = 0 (successful) then the git pull has completed without failure.
 
 			LOGGING "- Git Pull successful, Exit code 0, process sleeping until next scheduled event" # Logging that the git pull was successful. 
 			echo $?
