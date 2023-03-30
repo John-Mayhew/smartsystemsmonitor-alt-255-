@@ -16,11 +16,10 @@
 # Description:
 # This script is created to output frequency information about the CPU and will also include what governor is currently set. 
 # This script works along side setSpeed.sh and setGov.sh, which are used to change the governor and CPU speeds.
+# Initial script has been taken from Seb Blair.
 #
 #
-# -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# --------------------------------------- Declaring Variables
-
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
 CPUDIR=/sys/devices/system/cpu/cpu0/cpufreq/
 NTHCORE=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}') 
 COLUMNS=''

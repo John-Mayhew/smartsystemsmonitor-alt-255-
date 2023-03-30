@@ -16,14 +16,16 @@
 # Description:
 # This script is created to manually change the current governor to another. 
 # This script is used to work along side setSpeed.sh and cpuInfo.sh, which are used to show information about what governor is being used and 
-# the CPU speeds.
+# the CPU speeds. 
+# Initial script has been taken from Seb Blair. Few changes have been made to suit our system; Using this script manually allows you to see what current
+# governors are available and allows you to select any option. 
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
 # --------------------------------------- Declaring Variables
 GOVDIR="/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor"
 AVAILGOVS=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors)
 CORES=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
-
+# searches and lists the number of cores
 while [[ 1 ]]; do
         echo "Please select from the following governors:"
         echo  "${AVAILGOVS}"
@@ -34,7 +36,7 @@ while [[ 1 ]]; do
                 break
         fi
 done
-# this shows that the governor has been changed and what is has been changed to.
+# this echos that the governor has been changed and what is has been changed to.
 echo -n "Changing the scaling_governor all ${CORES} to "
 
 echo "${GOV}" | sudo tee ${GOVDIR}
