@@ -16,17 +16,17 @@
 # Description:
 # This script is created to change frequencies and then the speed of the CPU.
 # This script works along side cpuInfo.sh and setGov.sh, which are used to change the governor and CPU speeds.
+# Initial script has been taken from Seb Blair. Changes have been made to 
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------
-# --------------------------------------- Declaring Variables 
 FREQ=$1
 CPUDIR="/sys/devices/system/cpu/"
 MAX="scaling_max_freq"
 MIN="scaling_min_freq"
 # this is used to make the min and max the same as one another so that scaling is the same.
 CORES=$(lscpu | grep -w "CPU(s):*" | awk 'NR==1 {print$2}')
-
+# counts and lists the number of CPU cores
 sudo echo
 for (( c=0; c<${CORES}; c++))
 do
