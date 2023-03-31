@@ -15,9 +15,9 @@
 #
 # Description:
 # This script is created to change frequencies and then the speed of the CPU.
-# This script works along side cpuInfo.sh and setGov.sh, which are used to change the governor and CPU speeds.
+# This script works alongside cpuInfo.sh and setGov.sh, which are used to change the governor and CPU speeds.
 # Initial script has been taken from Seb Blair. Few changes have been made to suit our system; it runs on schedule through the use of crontab, 
-# increasing the frequency to 1800000 at 5 minutes to the hour and then again at 15 minutes past the hour to lower it back to 600000 to slow it down.
+# increasing the frequency to 1.8 MHz at 5 minutes to the hour and then again at 15 minutes past the hour to lower it back to 0.6 MHz to slow it down.
 # once the tasks have been completed.
 # This is done at the same time as when the camera takes a picture as well as when there is an update to Github and is slowed down once these tasks have been completed.
 #
