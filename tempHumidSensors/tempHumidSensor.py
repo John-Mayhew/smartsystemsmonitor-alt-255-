@@ -13,8 +13,9 @@
 # Date Created: 30/03/2023
 # Date of Version Completion: 30/03/2023
 #
+# Description:
 # This script was created to take temperature and humidity readings from the sensor.
-# This script works alongside the readings.csv, to hold the gathered temperature and humidity values. 
+# This script works alongside the readings.csv, that holds the gathered temperature and humidity values. 
 #
 #
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------import os
@@ -36,7 +37,7 @@ def main():
 	with open(file_path, 'w', newline='') as file:
 		writer = csv.writer(file)
 		writer.writerow(["Timestamp", "Temperature", "Humidity"])
-	# this allows for it to write the readings to readings.csv
+	# this allows for it to open and write the readings to the file readings.csv
 		for i in range(10):
 			humi, temp = sensor.read()
 			if not humi is None: # if there are readings that can be found, print these with a timestamp.
