@@ -1,5 +1,5 @@
-##! /usr/bin/env bash
-
+#! /usr/bin/env bash
+#
 #
 # Author: Group Alt 255
 #
@@ -47,7 +47,7 @@ if  [[ -z $( echo ${status} | grep -w -o "[up to date]" ) ]]; then # If Git fetc
 #	gitPull=$(git pull -va 2>&1 | grep -w "main") # Parses the result of git pull to a variable so that this can be used later for logging.
 #	LOGGING "-${gitPull}" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
-pullStatus=$? # Reports the status of the last command 
+ pullStatus=$? # Reports the status of the last command 
 
 	while [[ ${pullStatus} != 0 && ${pullCount} -lt 10 ]]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
 	do
