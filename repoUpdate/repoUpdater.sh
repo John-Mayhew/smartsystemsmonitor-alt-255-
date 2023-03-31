@@ -12,7 +12,7 @@
 #
 # Version 1.0
 # Date Created: 01/03/2023
-# Date of Version Completion:
+# Date of Version Completion: 30/03/2023
 #
 # Description:
 # This script was created to work in relation with Chrontab to automatically update from a remote Github repository every hour if changes are found.
@@ -31,11 +31,11 @@ status=$(git fetch -va 2>&1 | grep -w 'main' | grep -w "[up to date]") # Defines
 fetchCount=0 # Break condition for while loop to prevent indefinite retries of git fetch
 pullCount=0 # Break conditon for the while loop performing the git pull incase of failure to prevent indefinite retries. 
 
-while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do
+while [[ -z ${status} && ${fetchCount} -lt 10 ]]; do # while there is no value for status then the script will rerun git fetch
 
-	#LOGGING "- Status is empty, Git fetch may have failed - Retrying now" # Logging for if the status variable is empty
+	LOGGING "- Status is empty, Git fetch may have failed - Retrying now" # Logging for if the status variable is empty
 	status=$(git fetch -va 2>&1 | grep -w main | grep -w "[up to date]") # Defines the variable $status and parses the result of the git fetch to whether main is up to date or requires as update.
-	sleep 20
+	sleep 20 # Pauses the script before the next retry
 	let fetchCount++ # Increases the variable by 1 so that the while loop will break after 10 tries if ${status} is not filled before.
 
 done
@@ -43,25 +43,24 @@ done
 if  [[ -z $( echo ${status} | grep -w -o "[up to date]" ) ]]; then # If Git fetch returns anything other then "up-to-date" then the git fetch, the git pull will be run.
 
 	LOGGING "- Repository requires an update, updating now" # Logging to say that the local repository does not match the remote repository and therefore requires an update. 
-	git pull --progress
+	git pull --progress # Reports the progress or the git pull in the cli
 #	gitPull=$(git pull -va 2>&1 | grep -w "main") # Parses the result of git pull to a variable so that this can be used later for logging.
 #	LOGGING "-${gitPull}" # Logging the git pull so that we can monitor failures.
 	LOGGING "- Status of git Pull: $?" # Logs the exit code of git pull for monitoring purposes, used to initiate a re-run if failure occurs.
-	pullStatus=$?
+pullStatus=$? # Reports the status of the last command 
 
 	while [[ ${pullStatus} != 0 && ${pullCount} -lt 10 ]]; # While exit code is not 0 (successful) this will re-run the git pull incase of failure.
 	do
 
 		git pull --progress # Pulls from the remote repository
-		pullStatus=$?
+		pullStatus=$? # Reports the status of the last command
 		LOGGING "- Git pull failed (exit code 1), running git pull again" # Logging the failure every time the loop is run - Should run until completed. 
-		sleep 60
+		sleep 60 # Pause before subsequent retries
 		let pullCount++ # Increases the variable by 1 so that the while loop will break after 10 tries if not successful and the error code is still reporting as 1 (Failure)
 		
 		if [[ ${pullStatus} == 0 ]]; then # If exit code = 0 (successful) then the git pull has completed without failure.
 
 			LOGGING "- Git Pull successful, Exit code 0, process sleeping until next scheduled event" # Logging that the git pull was successful. 
-			echo $?
 
 		fi
 
@@ -70,7 +69,6 @@ if  [[ -z $( echo ${status} | grep -w -o "[up to date]" ) ]]; then # If Git fetc
 elif [[ ${status} ]]; then
 
 	LOGGING "- Repository up to date" # Logging that the repository has not changed and therefore does not require an update. 
-	LOGGING "- ${status}"
 
 else
 
