@@ -45,6 +45,9 @@ Once the reposity has been cloned you will need to alter any scripts declaring t
 logfile=/home/pi/github/smartsystemsmonitor-alt-255/logging/log.txt # Change to the path where you cloned the repository. 
 ```
 
+<br>
+Once all the paths for the scripts have been updated you will also need to make sure that you change the network path/ network address of tour cloud storage location. Otherwise you will not benefit from cloud storage for pictures and sensor information
+
 <br><br>
 
 # Contribution:
